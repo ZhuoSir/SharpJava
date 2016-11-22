@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
  * Created by sunny-chen on 16/11/19.
  */
 public class CreateConnection {
@@ -50,6 +51,6 @@ public class CreateConnection {
             person.setAddressId(resultSet.getInt("AddressID"));
             personList.add(person);
         }
-        personList.forEach(person1 -> System.out.println(person1.toString()));
+        personList.forEach(System.out::println);
     }
 }
