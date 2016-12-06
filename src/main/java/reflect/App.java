@@ -15,7 +15,10 @@ public class App {
 //        createObjByReflect(DemoClass.class.getName());
 //        createObjByReflectConstructor(demo.getClass().getName());
 //        getAllProperties(demo.getClass().getName());
-        invokeMethod(demo.getClass().getName());
+//        invokeMethod(demo.getClass().getName());
+//        DemoClass demoClass = (DemoClass) setPropertyByReflect(demo.getClass().getName());
+//        System.out.println(demoClass.getTitle());
+        showClassloaderName(demo);
     }
 
     public static void printDetail(DemoInterface demo) {
@@ -149,5 +152,27 @@ public class App {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static Object setPropertyByReflect(String name) {
+        Class<?> demo = null;
+        Object obj = null;
+        try {
+            demo = Class.forName(name);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            obj = demo.newInstance();
+            Field field = demo.getField("title");
+            field.set(obj,"win this game");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return obj;
+    }
+
+    public static void showClassloaderName(Object object) {
+        System.out.println(object.getClass().getClassLoader().getClass().getName());
     }
 }

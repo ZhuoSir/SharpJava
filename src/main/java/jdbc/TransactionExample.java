@@ -10,7 +10,7 @@ public class TransactionExample {
     public TransactionExample() {
     }
 
-    public void insert() {
+    public void insert() throws SQLException {
         try {
             DBConnect.connect();
             DBConnect.AutoCommit(false);
@@ -25,18 +25,19 @@ public class TransactionExample {
 
             DBConnect.connection.commit();
         } catch (SQLException e) {
+            DBConnect.connection.rollback();
             e.printStackTrace();
         } finally {
-            try {
-                DBConnect.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DBConnect.close();
         }
     }
 
     public static void main(String args[]) {
         TransactionExample example = new TransactionExample();
-        example.insert();
+        try {
+            example.insert();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
