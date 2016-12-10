@@ -66,7 +66,8 @@ public class App {
         char[] buffer = new char[1];
         int numberReader = 0;
         FileReader reader = new FileReader(path + "/text.txt");
-        PrintWriter writer = new PrintWriter(System.out);
+        FileWriter writer = new FileWriter(path + "/copy.txt");
+//        PrintWriter writer = new PrintWriter(System.out);
         while ((numberReader = reader.read(buffer)) != -1) {
             writer.write(buffer, 0, numberReader);
         }

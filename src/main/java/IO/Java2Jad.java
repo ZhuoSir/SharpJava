@@ -9,7 +9,7 @@ public class Java2Jad {
 
     public static void main(String[] args) throws Exception {
         File dir = new File("/Users/sunny-chen/Desktop/java/thread");
-        if (!(dir.exists()&&dir.isDirectory())) {
+        if (!(dir.exists() && dir.isDirectory())) {
             throw new Exception("目录不存在");
         }
 
@@ -28,7 +28,7 @@ public class Java2Jad {
             FileInputStream is = new FileInputStream(f);
             String destName = f.getName().replaceAll("\\.java$", ".jad");
             FileOutputStream os = new FileOutputStream(new File(destDir, destName));
-            copy(is,os);
+            copy(is, os);
             System.out.println(f.getName() + "成功被复制");
             is.close();
             os.close();
@@ -38,7 +38,7 @@ public class Java2Jad {
     private static void copy(FileInputStream is, FileOutputStream os) throws IOException {
         int len = 0;
         byte[] buff = new byte[1024];
-        while ((len=is.read(buff))!=-1) {
+        while ((len = is.read(buff)) != -1) {
             os.write(buff, 0, len);
         }
     }

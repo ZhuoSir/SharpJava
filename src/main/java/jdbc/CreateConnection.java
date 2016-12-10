@@ -38,7 +38,7 @@ public class CreateConnection {
 
     public static void testQuery() throws SQLException {
         List<Person> personList = new ArrayList<>();
-        String sql = "select * from Person";
+        String sql = "select * from Human";
         ResultSet resultSet = query(sql);
         Person person;
         while (resultSet.next()) {
