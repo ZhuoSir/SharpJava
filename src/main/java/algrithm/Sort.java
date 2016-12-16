@@ -176,9 +176,9 @@ public class Sort {
      * 归并算法实现
      *
      * @param array
-     * @param low
-     * @param mid
-     * @param high
+     * @param low 低位
+     * @param mid 中位
+     * @param high 高位
      */
     private static void merge(int[] array, int low, int mid, int high) {
         int i = low;
