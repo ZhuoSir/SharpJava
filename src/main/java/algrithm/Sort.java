@@ -173,33 +173,43 @@ public class Sort {
     }
 
     /**
-     * 归并算法实现
-     *
-     * @param data
-     * @param p
-     * @param q
-     * @param r
-     */
-    private static void merge(int[] data, int p, int q, int r) {
-        int[] B = new int[data.length];
-        int s = p;
-        int t = q + 1;
-        int k = p;
-        while (s <= q && t <= r) {
-            if (data[s] <= data[t]) {
-                B[k] = data[s];
-                s++;
-            } else {
-                B[k] = data[t];
-                t++;
-            }
-            k++;
-        }
-        if (s == q + 1)
-            B[k++] = data[t++];
-        else
-            B[k++] = data[s++];
-        for (int i = p; i <= r; i++)
-            data[i] = B[i];
-    }
+	 * 归并算法实现
+	 *
+	 * @param array
+	 * @param low
+	 * @param mid
+	 * @param high
+	 */
+	private static void merge(int[] array, int low, int mid, int high) {
+		int i = low;
+		int j = mid + 1;
+		int k = 0;
+		int[] tmpArray = new int[high - low + 1];
+
+		while (i <= mid && j <= high) {
+			if (array[i] <= array[j]) {
+				tmpArray[k] = array[i];
+				i++;
+			} else {
+				tmpArray[k] = array[j];
+				j++;
+			}
+			k++;
+		}
+
+		while (i <= mid) {
+			tmpArray[k] = array[i];
+			i++;
+			k++;
+		}
+		while (j <= high) {
+			tmpArray[k] = array[j];
+			j++;
+			k++;
+		}
+ 
+		for (k = 0, i = low; i <= high; i++, k++) {
+			array[i] = tmpArray[k];
+		}
+	}
 }
