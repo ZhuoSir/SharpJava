@@ -180,36 +180,36 @@ public class Sort {
      * @param mid
      * @param high
      */
-     private static void merge(int[] array, int low, int mid, int high) {
-	 int i = low;
-	 int j = mid + 1;
-	 int k = 0;
-	 int[] tmpArray = new int[high - low + 1];
+    private static void merge(int[] array, int low, int mid, int high) {
+        int i = low;
+        int j = mid + 1;
+        int k = 0;
+        int[] tmpArray = new int[high - low + 1];
 
-	 while (i <= mid && j <= high) {
-	 	if (array[i] <= array[j]) {
-			tmpArray[k] = array[i];
-			i++;
-		} else {
-			tmpArray[k] = array[j];
-			j++;
-		}
-		k++;
-	}
+        while (i <= mid && j <= high) {
+            if (array[i] <= array[j]) {
+                tmpArray[k] = array[i];
+                i++;
+            } else {
+                tmpArray[k] = array[j];
+                j++;
+            }
+            k++;
+        }
 
-	while (i <= mid) {
-		tmpArray[k] = array[i];
-		i++;
-		k++;
-	}
-	while (j <= high) {
-		tmpArray[k] = array[j];
-		j++;
-		k++;
-	}
- 
-	for (k = 0, i = low; i <= high; i++, k++) {
-		array[i] = tmpArray[k];
-	}
+        while (i <= mid) {
+            tmpArray[k] = array[i];
+            i++;
+            k++;
+        }
+        while (j <= high) {
+            tmpArray[k] = array[j];
+            j++;
+            k++;
+        }
+
+        for (k = 0, i = low; i <= high; i++, k++) {
+            array[i] = tmpArray[k];
+        }
     }
 }
