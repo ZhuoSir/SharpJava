@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bookStore>
+
+    <book id="1">
+        <name>代码大全</name>
+        <author>亚当斯</author>
+        <year>2017</year>
+        <price>89</price>
+    </book>
+
+    <book id="2">
+        <name>春秋</name>
+        <author>孔子</author>
+        <year>2017</year>
+        <price>102</price>
+    </book>
+
+</bookStore>
