@@ -14,7 +14,10 @@ public class Sort {
 //        quickSort(array, 0, array.length-1);
 //        selectSort(array);
 //        insertSelect(array);
-        mergeSort(array, 0, array.length - 1);
+//        mergeSort(array, 0, array.length - 1);
+
+        shellSort(array);
+
         print(array);
         System.out.println();
 
@@ -212,4 +215,31 @@ public class Sort {
             array[i] = tmpArray[k];
         }
     }
+
+    /**
+     * 希尔排序
+     *
+     * */
+    public static void shellSort(int[] array) {
+        int increment = 12;
+        do {
+            increment = increment / 3 + 1;
+            shellPass(array, increment);
+
+        } while (increment > 1);
+    }
+
+    private static void shellPass(int[] array, int d) {
+        for (int i = d; i < array.length; i++) {
+            int temp = array[i];
+            int j = i - d;
+            while (j >= 0 && array[j] > temp) {
+                array[j + d] = array[j];
+                j -= d;
+            }
+            array[j + d] = temp;
+        }
+    }
+
+
 }
