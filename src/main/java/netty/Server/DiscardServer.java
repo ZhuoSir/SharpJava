@@ -9,6 +9,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import netty.Handler.TimeServerHandler;
+import netty.others.TimeEncoder;
 
 /**
  * Discards any incoming data.
@@ -36,7 +37,8 @@ public class DiscardServer {
 //                        ch.pipeline().addFirst(new LookReceiveDataHandler());
 //                        ch.pipeline().addLast(new DiscardServerHandler());
 //                        ch.pipeline().addFirst(new WriteToEchoHandler());
-                        ch.pipeline().addFirst(new TimeServerHandler());
+//                        ch.pipeline().addFirst(new TimeEncoder());
+                        ch.pipeline().addLast(new TimeEncoder(), new TimeServerHandler());
                     }
                 })
                 .option(ChannelOption.SO_BACKLOG, 128)
