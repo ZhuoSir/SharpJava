@@ -1,4 +1,4 @@
-package netty.DiscardServer;
+package netty.Handler;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
