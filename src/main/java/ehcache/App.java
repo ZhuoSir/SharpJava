@@ -5,6 +5,7 @@ import org.ehcache.CacheManager;
 import org.ehcache.PersistentCacheManager;
 import org.ehcache.UserManagedCache;
 import org.ehcache.config.CacheConfiguration;
+import org.ehcache.config.ResourcePools;
 import org.ehcache.config.builders.CacheConfigurationBuilder;
 import org.ehcache.config.builders.CacheManagerBuilder;
 import org.ehcache.config.builders.ResourcePoolsBuilder;
@@ -19,7 +20,7 @@ import org.ehcache.config.units.MemoryUnit;
 public class App {
 
     public static void main(String[] args) {
-        test3();
+        test2();
     }
 
     public static void test() {
@@ -119,6 +120,11 @@ public class App {
 
         usesDefaultSizeOfEngine.put("five", "da five!");
         System.out.println(usesDefaultSizeOfEngine.get("five"));
+
+        // Update ResourcePools
+        ResourcePools pools = ResourcePoolsBuilder.newResourcePoolsBuilder()
+                .heap(20L, EntryUnit.ENTRIES).build();
+        usesConfiguredInCache.getRuntimeConfiguration().updateResourcePools(pools);
 
         cacheManager.close();
     }
