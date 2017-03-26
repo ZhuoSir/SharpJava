@@ -9,8 +9,8 @@ import basic.bean.Human;
 public class InitApp {
 
     public static void main(String[] args) {
-//        Animal human = new Human();
         Animal human = new Human();
-        human.sleep();
+
+        human.drink();
     }
 }
