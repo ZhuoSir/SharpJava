@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<eh:config
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns:eh='http://www.ehcache.org/v3'
+        xmlns:jcache="http://www.ehcache.org/v3/jsr107"
+        xsi:schemaLocation="
+        http://www.ehcache.org/v3
+        http://www.ehcache.org/schema/ehcache-core-3.3.xsd
+        http://www.ehcache.org/v3/jsr107 http://www.ehcache.org/schema/ehcache-107-ext-3.3.xsd">
+    
+    <!--<eh:service>-->
+        <!--<jcache:defaults>-->
+            <!--<jcache:cache name="invoices" template="myDefaultTemplate"/>-->
+        <!--</jcache:defaults>-->
+    <!--</eh:service>-->
+
+    <eh:cache alias="productCache">
+        <eh:key-type copier="org.ehcache.impl.copy.SerializingCopier">java.lang.Long</eh:key-type>
+
+        <eh:value-type copier="org.ehcache.impl.copy.SerializingCopier">ehcache.bean.Product</eh:value-type>
+
+        <eh:expiry>
+            <eh:tti unit="minutes">2</eh:tti>
+        </eh:expiry>
+
+        <eh:eviction-advisor>ehcache.bean.MyEvictionAdvisor</eh:eviction-advisor>
+
+        <eh:loader-writer>
+            <eh:class>ehcache.bean.ProductCacheLoaderWriter</eh:class>
+        </eh:loader-writer>
+
+        <eh:heap unit="entries">1</eh:heap>
+
+    </eh:cache>
+
+    <eh:cache-template name="myDefaultTemplate">
+        <eh:expiry>
+            <eh:none/>
+        </eh:expiry>
+    </eh:cache-template>
+
+    <eh:cache alias="customerCache" uses-template="myDefaultTemplate">
+        <eh:key-type>java.lang.Long</eh:key-type>
+        <eh:value-type>ehcache.bean.Customer</eh:value-type>
+        <eh:heap unit="entries">200</eh:heap>
+    </eh:cache>
+
+</eh:config>
