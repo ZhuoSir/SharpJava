@@ -87,11 +87,18 @@
             <version>1.16.16</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+
     </dependencies>
 
 
     <build>
-        <finalName>ppm</finalName>
+        <finalName>SharpJava</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
