@@ -7,7 +7,8 @@ import java.io.*;
  */
 public class ObjectStream {
 
-    static final String path = "/Users/sunny-chen/Documents/JAVA/SharpJava/src/main/java/IO/file/text.txt";
+//    static final String path = "/Users/sunny-chen/Documents/JAVA/SharpJava/src/main/java/IO/file/text.txt";
+    static final String path = "D:\\JAVA\\SharpJava\\src\\main\\java\\IO\\file\\text.txt";
 
     public static void main(String[] args) {
         ObjectOutputStream outputStream = null;

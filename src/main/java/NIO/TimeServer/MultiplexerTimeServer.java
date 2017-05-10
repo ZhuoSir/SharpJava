@@ -20,7 +20,7 @@ public class MultiplexerTimeServer implements Runnable {
 
     private ServerSocketChannel servChannel;
 
-    private volatile boolean stop;
+    private volatile boolean    stop;
 
     public MultiplexerTimeServer(int port) {
         try {

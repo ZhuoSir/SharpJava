@@ -1,6 +1,7 @@
 package xml.bean;
 
 /**
+ *
  * Created by sunny-chen on 17/1/7.
  */
 public class Book {

@@ -5,4 +5,8 @@
         <value>select * from where admin</value>
     </sql>
 
+    <sql name="insert">
+        <value>insert into </value>
+    </sql>
+
 </sqls>

@@ -120,7 +120,7 @@ public class App {
      * 求10个小时之后的日期
      * */
     private void test8() {
-        format = new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
+        format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
         cal.add(Calendar.HOUR_OF_DAY, -10); //10个小时之后是正10

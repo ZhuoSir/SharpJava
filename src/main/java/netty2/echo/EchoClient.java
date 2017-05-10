@@ -29,6 +29,7 @@ public class EchoClient {
         }
 
         EventLoopGroup group = new NioEventLoopGroup();
+
         try {
             Bootstrap bootstrap = new Bootstrap();
             bootstrap.group(group)

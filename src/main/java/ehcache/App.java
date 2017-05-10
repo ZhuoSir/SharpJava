@@ -13,6 +13,8 @@ import org.ehcache.config.builders.UserManagedCacheBuilder;
 import org.ehcache.config.units.EntryUnit;
 import org.ehcache.config.units.MemoryUnit;
 
+import javax.management.StringValueExp;
+
 /**
  *
  * Created by sunny-chen on 2017/3/21.

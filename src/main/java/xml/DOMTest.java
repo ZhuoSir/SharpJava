@@ -69,7 +69,7 @@ public class DOMTest {
     }
 
     public static void test() throws Exception {
-        String sqlName = "query";
+        String sqlName = "insert";
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = factory.newDocumentBuilder();
         Document document = documentBuilder.parse("src/main/java/xml/sqls.xml");
@@ -80,8 +80,11 @@ public class DOMTest {
 
         if (null != node) {
             NodeList childNodes = node.getChildNodes();
+
             for (int j = 0; j < childNodes.getLength(); j++) {
+
                 if (childNodes.item(j).getNodeType() == Node.ELEMENT_NODE) {
+
                     if ("value".equals(childNodes.item(j).getNodeName())) {
                         result = childNodes.item(j).getFirstChild().getNodeValue();
                         break;
@@ -102,8 +105,6 @@ public class DOMTest {
 
             for (int j = 0; j < map.getLength(); j++) {
                 Node attr = map.item(j);
-                System.out.println("属性名：" + attr.getNodeName());
-                System.out.println("属性值：" + attr.getNodeValue());
 
                 if ("name".equals(attr.getNodeName())
                         && sqlName.equals(attr.getNodeValue())) {
