@@ -21,7 +21,7 @@ public class ReadWriteLockDemo {
     public Object handleRead(Lock lock) throws InterruptedException {
         try {
             lock.lock();
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
             return value;
         } finally {
             lock.unlock();
@@ -31,7 +31,7 @@ public class ReadWriteLockDemo {
     public void handleWrite(Lock lock, int value) throws InterruptedException {
         try {
             lock.lock();
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
             this.value = value;
         } finally {
             lock.unlock();
@@ -67,12 +67,12 @@ public class ReadWriteLockDemo {
 
         for (int i = 0; i < 20; i++) {
             new Thread(readRunnable).start();
-//            new Thread(writeRunnable).start();
-        }
-
-        for (int i = 18; i < 20; i++) {
             new Thread(writeRunnable).start();
         }
+
+//        for (int i = 18; i < 20; i++) {
+//            new Thread(writeRunnable).start();
+//        }
     }
 
 
