@@ -2,8 +2,11 @@ package thread.lock;
 
 import org.junit.Test;
 
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ReentrantLockTest {
@@ -120,6 +123,73 @@ public class ReentrantLockTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+
+
+    public static void main(String[] args) {
+
+        final int capacity = 20;
+//        List<Integer> integers = new ArrayList<>(capacity);
+//        Map<Integer, Integer> map = new ConcurrentHashMap<>(capacity);
+        Queue<Double> queue = new ArrayDeque<>(capacity);
+        ReentrantLock lock = new ReentrantLock();
+
+        Condition notFull = lock.newCondition();
+        Condition notEmpty  = lock.newCondition();
+
+
+
+        Runnable write = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    lock.lock();
+                    while (true) {
+                        if (queue.size() == capacity) {
+                            try {
+                                notFull.await();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        Double value = Math.random();
+                        queue.add(value);
+                        System.out.println(Thread.currentThread() + "write value : " + value);
+                        notEmpty.signal();
+                    }
+                } finally {
+                    lock.unlock();
+                }
+            }
+        };
+
+        Runnable read  = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    lock.lock();
+                    while (true) {
+                        if (queue.size() == 0) {
+                            try {
+                                notEmpty.await();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        Double value = queue.poll();
+                        System.out.println(Thread.currentThread() + "read value : " + value);
+                        notFull.signal();
+                    }
+                } finally {
+                    lock.unlock();
+                }
+            }
+        };
+
+
+        new Thread(write, "write-thread").start();
+        new Thread(read, "read-thread1").start();
+    }
+
 }
